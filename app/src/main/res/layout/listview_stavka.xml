@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="#1affffff"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/redniBrojStavke"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:background="#01ffffff"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:textColor="#000" />
+
+    <LinearLayout
+        android:id="@+id/stavkaContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="3dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/stavkaId"
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:layout_gravity="center"
+            android:text=" ID broj stavke:"
+            android:textSize="12dp"
+
+            />
+
+        <TextView
+            android:id="@+id/nazivPosla"
+            android:layout_width="match_parent"
+            android:layout_height="17dp"
+            android:layout_gravity="center"
+            android:text=" Naziv posla: "
+            android:textSize="12dp"
+
+            />
+
+        <TextView
+            android:id="@+id/stavkaTekst"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#fff"
+            android:focusable="false"
+            android:maxLines="100"
+            android:scrollbars="vertical"
+            android:text=" Tekst: "
+            android:textSize="12dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="40dp"
+        android:layout_height="116dp"
+        android:gravity="center"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/editStavka"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/edit"
+            android:layout_marginBottom="10dp"/>
+
+        <Button
+            android:id="@+id/deleteItem"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/trash" />
+
+    </LinearLayout>
+
+</LinearLayout>

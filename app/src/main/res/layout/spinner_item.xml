@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/spinner_item_background"
+    >
+
+    <TextView
+        android:id="@+id/spinnerItem"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="#b8302e2e"
+        android:text="khhbdcuhdwb"
+        android:gravity="center"
+        android:textSize="@dimen/activity_vertical_margin"
+        android:background="@drawable/spinner_item_background"/>
+
+</LinearLayout>

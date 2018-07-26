@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="marinkatava.hr.fesb.mobileradninalog.ui.delete.DeleteItemActivity"
+    android:orientation="vertical"
+    android:background="#01ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#be6e6e72">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Jeste li sigurni da želite obrisati ovaj nalog?"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="5"
+        android:background="#c2000000"
+       >
+        <Button
+            android:id="@+id/yes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="DA"
+            android:background="@drawable/login_input"
+            android:textColor="#fff"/>
+        <Button
+            android:id="@+id/no"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="NE"
+            android:layout_weight="1"
+            android:background="@drawable/login_input"
+            android:textColor="#fff"/>
+    </LinearLayout>
+
+</LinearLayout>

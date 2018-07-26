@@ -1,0 +1,322 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/background"
+        tools:context="marinkatava.hr.fesb.mobileradninalog.ui.nalog.Tabs.FragmentRadniNalog">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/radniNalog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text=" Radni nalog broj:"
+                    android:textColor="#656565"
+                    android:textSize="17sp"
+                    android:textStyle="italic" />
+
+                <EditText
+                    android:id="@+id/brojNaloga"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#79ffffff"
+                    android:gravity="center"
+                    android:hint="broj"
+                    android:inputType="number"
+                    android:textColor="#e90f0aa0"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/datumPocetkaRada"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|center"
+                    android:text=" Datum početka rada:"
+                    android:textColor="#656565"
+                    android:textSize="17sp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/formatDatuma"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#79ffffff"
+                    android:gravity="center|center"
+                    android:hint="yyyy-mm-dd"
+                    android:textColor="#e90f0aa0"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/vrijemeRada"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text=" Vrijeme rada:"
+                android:textAlignment="viewStart"
+                android:textColor="#656565"
+                android:textSize="17sp"
+                android:textStyle="italic" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Od"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="          Od:"
+                        android:textAlignment="center"
+                        android:textColor="#656565"
+                        android:textSize="17sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/Do"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:text="         Do:"
+                        android:textAlignment="center"
+                        android:textColor="#656565"
+                        android:textSize="17sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#79ffffff"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/odUnos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:hint="Od: "
+                        android:textAlignment="center"
+                        android:textColor="#e90f0aa0"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:id="@+id/doUnos"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="left|center"
+                        android:hint="Do:"
+                        android:textAlignment="center"
+                        android:textColor="#e90f0aa0"
+                        android:textSize="15sp"
+                        android:textStyle="italic" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/naOsnovu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=" Na osnovu:"
+                android:textColor="#656565"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/buttonmain"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/ugovor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Ugovor"
+                    android:textColor="#656565" />
+
+                <CheckBox
+                    android:id="@+id/garancija"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Garancija"
+                    android:textColor="#656565" />
+
+                <CheckBox
+                    android:id="@+id/poPozivu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Po pozivu"
+                    android:textColor="#656565" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/statusSistema"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text=" Status sistema:"
+                android:textColor="#656565"
+                android:textSize="17sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/buttonmain"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/potpunoUZastoju"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Potpuni zastoj"
+                    android:textColor="#656565" />
+
+                <CheckBox
+                    android:id="@+id/djelimicniZastoj"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2.5dp"
+                    android:layout_marginRight="2.5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Djelimični zastoj"
+                    android:textColor="#656565" />
+
+                <CheckBox
+                    android:id="@+id/potpunoOperativan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="2.5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:buttonTint="#777575"
+                    android:text="Potpuno operativan"
+                    android:textColor="#656565" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/ugradeniMaterijal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text=" Ugrađeni materijal:"
+                android:textColor="#656565"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/unosMaterijala"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#79ffffff"
+                android:gravity="left|top"
+                android:hint=" Materijal:"
+                android:textColor="#e90f0aa0"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/primjedbe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:text=" Primjedbe:"
+                android:textColor="#656565"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/unosPrimjedbe"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="#79ffffff"
+                android:gravity="left|top"
+                android:hint=" Primjedbe:"
+                android:textColor="#e90f0aa0"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/spremiti"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_input"
+                android:text="Spremiti"
+                android:textAllCaps="false"
+                android:textColor="#656565"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

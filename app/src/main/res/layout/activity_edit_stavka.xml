@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".nalog.EditStavka">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/teal"
+        android:elevation="4dp"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="Uredi stavku"
+        app:titleTextColor="#f4f3f3"/>
+
+    <TextView
+        android:id="@+id/nazivPosla"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="15dp"
+        android:text="Naziv posla"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/nazivPoslaTekst"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="#fff" />
+
+    <TextView
+        android:id="@+id/noviNazivPosla"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="15dp"
+        android:text="Postavite novi naziv posla"
+        android:layout_marginTop="10dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerNoviNazivPosla"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="2dp" />
+
+    <TextView
+        android:id="@+id/opisPosla"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="15dp"
+        android:text="Opis posla"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/opisPoslaTekst"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff" />
+
+    <Button
+        android:id="@+id/spremiti"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/login_input"
+        android:text="Spremiti"
+        android:textAllCaps="false"
+        android:textColor="#656565"
+        android:textStyle="bold" />
+</LinearLayout>

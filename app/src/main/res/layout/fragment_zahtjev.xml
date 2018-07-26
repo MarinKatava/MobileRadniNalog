@@ -1,0 +1,227 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".nalog.tabs.TabActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/poslovniPartner"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text=" Poslovni partner:"
+                    android:textColor="#656565" />
+
+                <TextView
+                    android:id="@+id/poslovniPartnerTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="#48ffffff"
+                    android:hint="Unešeni poslovni partner"
+                    android:textColor="#e90f0aa0"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Promjena poslovnog partnera (opcionalno)"
+                    android:textColor="#656565"
+                    />
+
+                <Spinner
+                    android:id="@+id/spinnerPoslovniPartner"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/odgovornaOsoba"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text=" Odgovorna osoba:"
+                    android:textColor="#656565"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/odgovornaOsobaTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="#48ffffff"
+                    android:hint="Unešena odgovorna osoba"
+                    android:textColor="#e90f0aa0"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Promjena odgovorne osobe (opcionalno)"
+                    android:textColor="#656565"/>
+                <Spinner
+                    android:id="@+id/spinnerOdgovornaOsoba"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/datum"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text=" Datum zahtjeva:"
+                    android:textColor="#656565" />
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/buttonmain"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Datum"
+                    android:inputType="date"
+                    android:textColor="#e90f0aa0"
+                    android:textColorHint="#656565"
+                    android:textStyle="bold|italic" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/opisProblema"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text=" Opis problema:"
+                    android:textColor="#656565" />
+
+                <EditText
+                    android:id="@+id/unesiteOpis"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="#48ffffff"
+                    android:gravity="left|top"
+                    android:hint=" Opis"
+                    android:textColor="#e90f0aa0" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/intervencija"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:text=" Intervencija:"
+                    android:textColor="#656565" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <CheckBox
+                        android:id="@+id/hitna"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="2.5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonmain"
+                        android:buttonTint="#656565"
+                        android:text="Hitna"
+                        android:textColor="#656565" />
+
+                    <CheckBox
+                        android:id="@+id/normalna"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="2.5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/buttonmain"
+                        android:buttonTint="#656565"
+                        android:text="Normalna"
+                        android:textColor="#656565"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/spremiti"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/login_input"
+                android:text="Spremiti promjene"
+                android:textAllCaps="false"
+                android:textColor="#656565"
+                android:textStyle="bold"
+
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
