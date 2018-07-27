@@ -38,7 +38,5 @@
 
         <activity android:name=".database.Test"></activity>
         <activity android:name=".nalog.EditStavka"></activity>
-
     </application>
-
 </manifest>

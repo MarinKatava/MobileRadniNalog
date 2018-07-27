@@ -59,6 +59,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         });
 
 
+//        dohvacanje podataka iz stavke
         Bundle extras = getIntent().getExtras();
         opisPoslaList = extras.getParcelableArrayList("opisPoslaList");
         radniNalogStavkaList = extras.getParcelableArrayList("radniNalogStavkaList");
@@ -72,6 +73,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         opisPoslaSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerNoviNazivPosla.setAdapter(opisPoslaSpinnerAdapter);
 
+//        postavljanje oznake spinnera na vrijednost u bazi
         int selectedNazivPosla = 0;
         for (int i = 0; i < opisPoslaList.size(); i++) {
             if (opisPoslaList.get(i).getOpisPoslaId() == radniNalogStavkaList.get(position).getOpisPoslaId()) {
@@ -80,7 +82,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         }
         spinnerNoviNazivPosla.setSelection(selectedNazivPosla);
 
-
+//        uzimanje ID-ja oznacene stavke na spinneru
         spinnerNoviNazivPosla.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
