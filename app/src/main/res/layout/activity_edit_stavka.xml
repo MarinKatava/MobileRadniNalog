@@ -16,60 +16,85 @@
         android:elevation="4dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Uredi stavku"
-        app:titleTextColor="#f4f3f3"/>
+        app:titleTextColor="#f4f3f3" />
 
-    <TextView
-        android:id="@+id/nazivPosla"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:textSize="15dp"
-        android:text="Naziv posla"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/nazivPoslaTekst"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:background="#fff" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/noviNazivPosla"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:textSize="15dp"
-        android:text="Postavite novi naziv posla"
-        android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinnerNoviNazivPosla"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="2dp" />
+                <TextView
+                    android:id="@+id/nazivPosla"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Naziv posla"
+                    android:textSize="15dp" />
 
-    <TextView
-        android:id="@+id/opisPosla"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:textSize="15dp"
-        android:text="Opis posla"
-        android:layout_marginTop="10dp"/>
+                <TextView
+                    android:id="@+id/nazivPoslaTekst"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="#fff" />
 
-    <EditText
-        android:id="@+id/opisPoslaTekst"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff" />
+            </LinearLayout>
 
-    <Button
-        android:id="@+id/spremiti"
-        android:layout_width="100dp"
-        android:layout_height="75dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/login_input"
-        android:text="Spremiti"
-        android:textAllCaps="false"
-        android:textColor="#656565"
-        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/noviNazivPosla"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Postavite novi naziv posla"
+                    android:textSize="15dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerNoviNazivPosla"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="2dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/opisPosla"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Opis posla"
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/opisPoslaTekst"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff" />
+
+            <Button
+                android:id="@+id/spremiti"
+                android:layout_width="100dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/login_input"
+                android:text="Spremiti"
+                android:textAllCaps="false"
+                android:textColor="#656565"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
