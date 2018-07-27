@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.marin.mobileradninalog.model.Covjek;
 import com.example.marin.mobileradninalog.model.Firma;
@@ -17,7 +18,7 @@ import com.example.marin.mobileradninalog.nalog.tabs.FragmentZahtjev;
 import java.util.ArrayList;
 
 public class
-PageAdapter extends FragmentPagerAdapter {
+PageAdapter extends FragmentStatePagerAdapter {
     private int numOfTabs;
     ArrayList<RadniNalog> radniNalog;
     ArrayList<Covjek> covjekList;
@@ -78,5 +79,10 @@ PageAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return numOfTabs;
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

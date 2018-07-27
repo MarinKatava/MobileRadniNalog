@@ -28,11 +28,13 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
     EditText opisPoslaTekst;
     Spinner spinnerNoviNazivPosla;
     Button spremiti;
-    ArrayList<OpisPosla> opisPoslaList;
+
     int stavkaId;
     int radniNalogId;
     int position;
     int opisPoslaIdToSend;
+    ArrayList<OpisPosla> opisPoslaList;
+
     Intent intent;
 
     @Override
@@ -92,10 +94,12 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
                 SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                 mReceiver.setReceiver(EditStavka.this);
                 intent.putExtra("receiver", mReceiver);
-                intent.putExtra("urlUpdateRadniNalogStavka", URL.saveEditRadniNalogStavka + stavkaId);
+                intent.putExtra("urlUpdateRadniNalogStavka", URL.saveEditRadniNalogStavka + String.valueOf(stavkaId));
                 intent.putExtra("radniNalogStavka", stavka);
                 intent.putExtra("category", "editStavka");
                 startService(intent);
+                finish();
+
             }
         });
     }
@@ -105,8 +109,6 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         switch (resultCode) {
             case SearchRadniNalog.STATUS_RUNNING:
                 getApplication().stopService(intent);
-                Toast.makeText(this, "Spremljeno", Toast.LENGTH_SHORT).show();
-                EditStavka.this.finish();
                 break;
             case SearchRadniNalog.STATUS_FINISHED:
                 break;

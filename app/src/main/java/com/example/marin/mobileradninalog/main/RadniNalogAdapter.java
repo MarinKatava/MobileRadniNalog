@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
@@ -24,6 +27,7 @@ import com.example.marin.mobileradninalog.model.RadniNalog;
 import com.example.marin.mobileradninalog.model.Stavka;
 import com.example.marin.mobileradninalog.nalog.tabs.TabActivity;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class RadniNalogAdapter extends ArrayAdapter implements SearchResultReceiver.Receiver {
@@ -81,6 +85,19 @@ public class RadniNalogAdapter extends ArrayAdapter implements SearchResultRecei
             @Override
             public void onClick(View view) {
 
+                File filelocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "RadniNalog" + radniNalog.get(position).getBrojNaloga() + ".pdf");
+                Uri path = Uri.fromFile(filelocation);
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.setData(Uri.parse("mailto:"));
+                emailIntent.setType("vnd.android.cursor.dir/email");
+                if (path != null) {
+                    emailIntent.putExtra(Intent.EXTRA_STREAM, path);
+                } else {
+                    Toast.makeText(context, "File ne postoji. Prvo preuzmite radni nalog na uređaj, zatim ponovno izvršite slanje.", Toast.LENGTH_SHORT).show();
+                }
+
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Radni nalog");
+                context.startActivity(Intent.createChooser(emailIntent, "Pošaljite radni nalog broj " + radniNalog.get(position).getBrojNaloga()));
             }
         });
 

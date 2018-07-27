@@ -1,16 +1,11 @@
 package com.example.marin.mobileradninalog.nalog.tabs;
 
-import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -53,7 +48,6 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab);
-
     }
 
     @Override
@@ -100,6 +94,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                 try {
                     WriteToPdf writeToPdf = new WriteToPdf();
                     writeToPdf.writeToPdf(radniNalog.get(position), stavkaList, firmaList, covjekList, opisPoslaList);
+                    Toast.makeText(TabActivity.this, "Radni nalog spremljen na uređaj", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(TabActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
@@ -116,6 +111,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             case SearchRadniNalog.STATUS_RUNNING:
                 showProgressDialog();
                 break;
+
             case SearchRadniNalog.STATUS_FINISHED:
                 hideProgressDialog();
 
@@ -125,9 +121,12 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                 opisPoslaList = (ArrayList<OpisPosla>) resultData.getSerializable("opisPosla");
 
                 pageAdapter = new PageAdapter(getSupportFragmentManager(), tabs.getTabCount(), radniNalog, covjekList, firmaList, stavkaList, opisPoslaList, position);
+                pageAdapter.notifyDataSetChanged();
+
                 viewPager.setAdapter(pageAdapter);
                 viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
                 break;
+
             case SearchRadniNalog.STATUS_ERROR:
                 android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                 break;
@@ -141,7 +140,6 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             mProgressDialog.setMessage("Učitavanje...");
             mProgressDialog.setIndeterminate(true);
         }
-
         mProgressDialog.show();
     }
 
@@ -150,6 +148,5 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             mProgressDialog.hide();
         }
     }
-
 }
 

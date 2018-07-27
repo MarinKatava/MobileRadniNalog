@@ -1,9 +1,19 @@
 package com.example.marin.mobileradninalog.nalog;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.marin.mobileradninalog.Constants.URL;
+import com.example.marin.mobileradninalog.R;
 import com.example.marin.mobileradninalog.database.GetData;
+import com.example.marin.mobileradninalog.database.SearchRadniNalog;
+import com.example.marin.mobileradninalog.database.SearchResultReceiver;
+import com.example.marin.mobileradninalog.main.MainActivity;
+import com.example.marin.mobileradninalog.main.RadniNalogAdapter;
 import com.example.marin.mobileradninalog.model.Covjek;
 import com.example.marin.mobileradninalog.model.Firma;
 import com.example.marin.mobileradninalog.model.OpisPosla;
@@ -28,8 +38,10 @@ import java.util.ArrayList;
  */
 
 public class WriteToPdf {
-    String descriptionID, jobName, descriptionText;
+    Context context;
+    int position;
     RadniNalog radniNalog;
+    ArrayList<RadniNalog> radniNalogList;
     ArrayList<Stavka> stavkaList;
     ArrayList<Firma> firmaList;
     ArrayList<Covjek> covjekList;
@@ -63,7 +75,7 @@ public class WriteToPdf {
 
         try {
 //            kreiranje lokacije spremanja filea
-            String fpath = "/sdcard/" + "RadniNalog" + String.valueOf(radniNalog.getRadniNalogId()) + ".pdf";
+            String fpath = "/sdcard/" + "RadniNalog" + String.valueOf(radniNalog.getBrojNaloga()) + ".pdf";
 //            String fpath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/RadniNalog";
             File file = new File(fpath);
             if (!file.exists()) {
@@ -97,9 +109,9 @@ public class WriteToPdf {
 //            datum obrade
             document.add(new Paragraph("Datum obrade: " + getData.jsonDateFormat(radniNalog.getDatumObrade()), textFont));
 //            vrijeme pocetka
-            document.add(new Paragraph("Vrijeme pocetka: " + radniNalog.getVrijemePocetka(), textFont));
+            document.add(new Paragraph("Vrijeme pocetka: " + radniNalog.getVrijemePocetka() + " h", textFont));
 //            vrijeme kraja
-            document.add(new Paragraph("Vrijeme kraja: " + radniNalog.getVrijemeKraja(), textFont));
+            document.add(new Paragraph("Vrijeme kraja: " + radniNalog.getVrijemeKraja() + " h", textFont));
 //            ugradjeni materijal
             document.add(new Paragraph("Ugradeni materijal: " + radniNalog.getUgradjeniMAterijal(), textFont));
 //            primjedbe
@@ -163,6 +175,7 @@ public class WriteToPdf {
 //            zatvaranje dokumenta
             document.close();
             return true;
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -172,3 +185,5 @@ public class WriteToPdf {
         }
     }
 }
+
+

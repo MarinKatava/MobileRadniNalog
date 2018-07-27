@@ -4,13 +4,13 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Stavka implements Parcelable {
-    private int stavkaId;
+    private int radniNalogStavkaId;
     private int radniNalogId;
     private int opisPoslaId;
     private String opisTekst;
 
-    public Stavka(int stavkaId, int radniNalogId, int opisPoslaId, String opisTekst) {
-        this.stavkaId = stavkaId;
+    public Stavka(int radniNalogStavkaId, int radniNalogId, int opisPoslaId, String opisTekst) {
+        this.radniNalogStavkaId = radniNalogStavkaId;
         this.radniNalogId = radniNalogId;
         this.opisPoslaId = opisPoslaId;
         this.opisTekst = opisTekst;
@@ -22,8 +22,8 @@ public class Stavka implements Parcelable {
         this.opisTekst = opisTekst;
     }
 
-    public int getStavkaId() {
-        return stavkaId;
+    public int getRadniNalogStavkaId() {
+        return radniNalogStavkaId;
     }
 
     public int getRadniNalogId() {
@@ -40,7 +40,7 @@ public class Stavka implements Parcelable {
 
     protected Stavka(Parcel in) {
 
-        stavkaId = in.readInt();
+        radniNalogStavkaId = in.readInt();
         radniNalogId = in.readInt();
         opisPoslaId = in.readInt();
         opisTekst = in.readString();
@@ -65,7 +65,7 @@ public class Stavka implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(stavkaId);
+        parcel.writeInt(radniNalogStavkaId);
         parcel.writeInt(radniNalogId);
         parcel.writeInt(opisPoslaId);
         parcel.writeString(opisTekst);

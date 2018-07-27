@@ -19,7 +19,6 @@ import com.example.marin.mobileradninalog.R;
 import com.example.marin.mobileradninalog.database.SearchRadniNalog;
 import com.example.marin.mobileradninalog.database.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.OpisPosla;
-import com.example.marin.mobileradninalog.model.RadniNalog;
 import com.example.marin.mobileradninalog.model.Stavka;
 import com.example.marin.mobileradninalog.nalog.EditStavka;
 import com.example.marin.mobileradninalog.nalog.ItemTextActivity;
@@ -48,6 +47,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
+        notifyDataSetChanged();
 
     }
 
@@ -76,7 +76,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
         h.editStavka = rowView.findViewById(R.id.editStavka);
 
         h.redniBrojStavke.setText(String.valueOf(position + 1));
-        h.stavkaId.setText("ID stavke: " + String.valueOf(radniNalogStavkaList.get(position).getStavkaId()));
+        h.stavkaId.setText("ID stavke: " + String.valueOf(radniNalogStavkaList.get(position).getRadniNalogStavkaId()));
         h.stavkaTekst.setText(radniNalogStavkaList.get(position).getOpisTekst().toString());
 
 //        dohvacanje naziva posla za odredenu stavku
@@ -113,7 +113,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                         intent.putExtra("receiver", mReceiver);
                         intent.putExtra("category", "postZahtjev");
                         intent.putExtra("radniNalog", radniNalogStavkaList);
-                        intent.putExtra("urlPostRadniNalog", URL.deleteRadniNalogStavka + radniNalogStavkaList.get(position).getStavkaId());
+                        intent.putExtra("urlPostRadniNalog", URL.deleteRadniNalogStavka + radniNalogStavkaList.get(position).getRadniNalogStavkaId());
                         getContext().startService(intent);
                     }
                 }).setNegativeButton("Ne", new DialogInterface.OnClickListener() {
@@ -138,7 +138,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                 }
                 Intent intent = new Intent(getContext(), EditStavka.class);
                 intent.putExtra("opisPoslaList", opisPoslaList);
-                intent.putExtra("stavkaId", radniNalogStavkaList.get(position).getStavkaId());
+                intent.putExtra("stavkaId", radniNalogStavkaList.get(position).getRadniNalogStavkaId());
                 intent.putExtra("radniNalogId", radniNalogId);
                 intent.putExtra("nazivPosla", opisPoslaList.get(indexOfObject).getNazivPosla().toString());
                 intent.putExtra("stavkaTekst", radniNalogStavkaList.get(position).getOpisTekst());

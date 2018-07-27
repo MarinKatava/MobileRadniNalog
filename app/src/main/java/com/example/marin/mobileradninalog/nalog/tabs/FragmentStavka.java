@@ -46,6 +46,7 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
     ListView stavkaListView;
     EditText insertText;
     Spinner nazivPoslaSpinner;
+    RadniNalogStavkaAdapter radniNalogStavkaAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,14 +84,13 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
         nazivPoslaSpinner.setAdapter(opisPoslaSpinnerAdapter);
 
 //        postavljanje podataka u listu (upakovanu u adapter)
-        RadniNalogStavkaAdapter radniNalogStavkaAdapter = new RadniNalogStavkaAdapter(getContext(), R.layout.radni_nalog, stavkaListToSend, opisPoslaList, radniNalogId, getResources());
+        radniNalogStavkaAdapter = new RadniNalogStavkaAdapter(getContext(), R.layout.radni_nalog, stavkaListToSend, opisPoslaList, radniNalogId, getResources());
         stavkaListView.setAdapter(radniNalogStavkaAdapter);
 
 //        dodavanje stavke u listu
         addStavka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 //                uzimanje indexa oznacenog itema u spinneru i ID-ja iz opisPoslaList na tom indexu
                 stavka = new Stavka(radniNalogId, opisPoslaList.get(nazivPoslaSpinner.getSelectedItemPosition()).getOpisPoslaId(), insertText.getText().toString());
 //                upisivanje nove stavke u bazu
@@ -102,6 +102,8 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
                 intent.putExtra("radniNalogStavka", stavka);
                 intent.putExtra("urlSaveRadniNalogStavka", URL.postRadniNalogStavka);
                 getContext().startService(intent);
+                radniNalogStavkaAdapter.notifyDataSetChanged();
+                Toast.makeText(getContext(), "Nova stavka dodana.", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -113,6 +115,5 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-        Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
     }
 }
