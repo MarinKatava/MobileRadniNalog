@@ -29,7 +29,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
     Spinner spinnerNoviNazivPosla;
     Button spremiti;
 
-    int stavkaId;
+    ArrayList<Stavka> radniNalogStavkaList;
     int radniNalogId;
     int position;
     int opisPoslaIdToSend;
@@ -61,7 +61,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
 
         Bundle extras = getIntent().getExtras();
         opisPoslaList = extras.getParcelableArrayList("opisPoslaList");
-        stavkaId = extras.getInt("stavkaId");
+        radniNalogStavkaList = extras.getParcelableArrayList("radniNalogStavkaList");
         radniNalogId = extras.getInt("radniNalogId");
         position = extras.getInt("position");
 
@@ -71,6 +71,15 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         OpisPoslaSpinnerAdapter opisPoslaSpinnerAdapter = new OpisPoslaSpinnerAdapter(getApplicationContext(), R.layout.spinner_item, opisPoslaList);
         opisPoslaSpinnerAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinnerNoviNazivPosla.setAdapter(opisPoslaSpinnerAdapter);
+
+        int selectedNazivPosla = 0;
+        for (int i = 0; i < opisPoslaList.size(); i++) {
+            if (opisPoslaList.get(i).getOpisPoslaId() == radniNalogStavkaList.get(position).getOpisPoslaId()) {
+                selectedNazivPosla = opisPoslaList.indexOf(opisPoslaList.get(i));
+            }
+        }
+        spinnerNoviNazivPosla.setSelection(selectedNazivPosla);
+
 
         spinnerNoviNazivPosla.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -88,13 +97,14 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
         spremiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Stavka stavka = new Stavka(stavkaId, radniNalogId, opisPoslaIdToSend, opisPoslaTekst.getText().toString());
+                Stavka stavka = new Stavka(radniNalogStavkaList.get(position).getRadniNalogStavkaId(), radniNalogId, opisPoslaIdToSend, opisPoslaTekst.getText().toString());
 
                 intent = new Intent(Intent.ACTION_SYNC, null, EditStavka.this, SearchRadniNalog.class);
                 SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                 mReceiver.setReceiver(EditStavka.this);
                 intent.putExtra("receiver", mReceiver);
-                intent.putExtra("urlUpdateRadniNalogStavka", URL.saveEditRadniNalogStavka + String.valueOf(stavkaId));
+                intent.putExtra("urlUpdateRadniNalogStavka", URL.saveEditRadniNalogStavka
+                        + String.valueOf(radniNalogStavkaList.get(position).getRadniNalogStavkaId()));
                 intent.putExtra("radniNalogStavka", stavka);
                 intent.putExtra("category", "editStavka");
                 startService(intent);

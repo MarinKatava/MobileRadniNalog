@@ -138,7 +138,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                 }
                 Intent intent = new Intent(getContext(), EditStavka.class);
                 intent.putExtra("opisPoslaList", opisPoslaList);
-                intent.putExtra("stavkaId", radniNalogStavkaList.get(position).getRadniNalogStavkaId());
+                intent.putExtra("radniNalogStavkaList", radniNalogStavkaList);
                 intent.putExtra("radniNalogId", radniNalogId);
                 intent.putExtra("nazivPosla", opisPoslaList.get(indexOfObject).getNazivPosla().toString());
                 intent.putExtra("stavkaTekst", radniNalogStavkaList.get(position).getOpisTekst());
