@@ -106,6 +106,23 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
                 Toast.makeText(getContext(), "Nova stavka dodana.", Toast.LENGTH_SHORT).show();
 
 
+//                refresh liste stavki nakon dodavanja nove stavke
+                new Handler().post(new Runnable() {
+
+                    @Override
+                    public void run()
+                    {
+                        Intent intent = getActivity().getIntent();
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                                | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        getActivity().overridePendingTransition(0, 0);
+                        getActivity().finish();
+
+                        getActivity().overridePendingTransition(0, 0);
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 
