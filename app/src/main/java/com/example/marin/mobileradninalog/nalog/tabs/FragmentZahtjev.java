@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
+import com.example.marin.mobileradninalog.database.CheckInternetConnection;
 import com.example.marin.mobileradninalog.database.GetData;
 import com.example.marin.mobileradninalog.database.SearchRadniNalog;
 import com.example.marin.mobileradninalog.database.SearchResultReceiver;
@@ -185,18 +186,21 @@ public class FragmentZahtjev extends Fragment implements SearchResultReceiver.Re
                         rn.get(radniNalogPosition).getPrimjedbe(),
                         isHitno);
 
-
-                intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
-                SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-                mReceiver.setReceiver(FragmentZahtjev.this);
-                intent.putExtra("receiver", mReceiver);
-                intent.putExtra("category", "postZahtjev");
-                intent.putExtra("radniNalog", radniNalog);
-                intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(radniNalogPosition).getRadniNalogId());
+                CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+                if (checkInternetConnection.checkConnection(getContext())) {
+                    intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
+                    SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+                    mReceiver.setReceiver(FragmentZahtjev.this);
+                    intent.putExtra("receiver", mReceiver);
+                    intent.putExtra("category", "postZahtjev");
+                    intent.putExtra("radniNalog", radniNalog);
+                    intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(radniNalogPosition).getRadniNalogId());
 //                    intent.putExtra("urlUpdateRadniNalog", URL.saveEditRadniNalog + rn.get(position).getRadniNalogId());
-                getContext().startService(intent);
-                Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
-
+                    getContext().startService(intent);
+                    Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(), "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

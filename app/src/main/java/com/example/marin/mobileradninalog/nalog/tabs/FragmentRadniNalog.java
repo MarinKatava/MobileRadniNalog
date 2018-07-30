@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
+import com.example.marin.mobileradninalog.database.CheckInternetConnection;
 import com.example.marin.mobileradninalog.database.GetData;
 import com.example.marin.mobileradninalog.database.SearchRadniNalog;
 import com.example.marin.mobileradninalog.database.SearchResultReceiver;
@@ -230,16 +231,19 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                             odUnos.getText().toString(), doUnos.getText().toString(), setPoOsnovuId,
                             setStatusSistemaId, unosMaterijala.getText().toString(), unosPrimjedbe.getText().toString(), rn.get(position).getIsHitno());
 
-
-                    intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
-                    SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-                    mReceiver.setReceiver(FragmentRadniNalog.this);
-                    intent.putExtra("receiver", mReceiver);
-                    intent.putExtra("category", "postZahtjev");
-                    intent.putExtra("radniNalog", radniNalog);
-                    intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(position).getRadniNalogId());
-                    getContext().startService(intent);
-
+                    CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+                    if (checkInternetConnection.checkConnection(getContext())) {
+                        intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
+                        SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+                        mReceiver.setReceiver(FragmentRadniNalog.this);
+                        intent.putExtra("receiver", mReceiver);
+                        intent.putExtra("category", "postZahtjev");
+                        intent.putExtra("radniNalog", radniNalog);
+                        intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(position).getRadniNalogId());
+                        getContext().startService(intent);
+                    }else{
+                        Toast.makeText(getContext(), "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e) {
                     Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }

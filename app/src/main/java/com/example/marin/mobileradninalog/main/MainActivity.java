@@ -13,9 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
+import com.example.marin.mobileradninalog.database.CheckInternetConnection;
 import com.example.marin.mobileradninalog.database.SearchRadniNalog;
 import com.example.marin.mobileradninalog.database.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.RadniNalog;
@@ -45,29 +47,34 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
     }
 
 
-
     @Override
     protected void onResume() {
         super.onResume();
-        Button novizahtjev = findViewById(R.id.noviZahtjev);
-        novizahtjev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ZahtjevActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        listView = findViewById(R.id.listView);
+        CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+        if (checkInternetConnection.checkConnection(this)) {
 
-        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, SearchRadniNalog.class);
-        SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
-        intent.putExtra("receiver", mReceiver);
-        intent.putExtra("urlRadniNalog", URL.getRadniNalog);
-        intent.putExtra("category", "getRadniNalog");
-        startService(intent);
+            Button novizahtjev = findViewById(R.id.noviZahtjev);
+            novizahtjev.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ZahtjevActivity.class);
+                    startActivity(intent);
+                }
+            });
 
+            listView = findViewById(R.id.listView);
+
+            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, SearchRadniNalog.class);
+            SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+            mReceiver.setReceiver(this);
+            intent.putExtra("receiver", mReceiver);
+            intent.putExtra("urlRadniNalog", URL.getRadniNalog);
+            intent.putExtra("category", "getRadniNalog");
+            startService(intent);
+        } else {
+            Toast.makeText(this, "Provjerite svoju internetsku vezu", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -116,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
             return false;
         }
     }
+
     private void requestForSpecificPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);

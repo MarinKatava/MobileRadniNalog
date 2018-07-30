@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
+import com.example.marin.mobileradninalog.database.CheckInternetConnection;
 import com.example.marin.mobileradninalog.database.SearchRadniNalog;
 import com.example.marin.mobileradninalog.database.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.Covjek;
@@ -63,17 +64,42 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
         position = extras.getInt("position");
         radniNalog = getIntent().getParcelableArrayListExtra("radniNalogList");
 
-        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, SearchRadniNalog.class);
-        SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-        mReceiver.setReceiver(this);
-        intent.putExtra("receiver", mReceiver);
-        intent.putExtra("urlFirma", URL.getFirma);
-        intent.putExtra("urlCovjek", URL.getCovjek);
-        intent.putExtra("urlGetOpisPosla", URL.getOpisPosla);
+        CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+
+        if (checkInternetConnection.checkConnection(getApplicationContext())) {
+
+            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, SearchRadniNalog.class);
+            SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+            mReceiver.setReceiver(this);
+            intent.putExtra("receiver", mReceiver);
+            intent.putExtra("urlFirma", URL.getFirma);
+            intent.putExtra("urlCovjek", URL.getCovjek);
+            intent.putExtra("urlGetOpisPosla", URL.getOpisPosla);
 //       url za dohvacanje stavki samo za taj radniNalogId
-        intent.putExtra("urlGetStavka", URL.getStavka + String.valueOf(radniNalog.get(position).getRadniNalogId()));
-        intent.putExtra("category", "getData");
-        startService(intent);
+            intent.putExtra("urlGetStavka", URL.getStavka + String.valueOf(radniNalog.get(position).getRadniNalogId()));
+            intent.putExtra("category", "getData");
+            startService(intent);
+
+            //        skidanje pdf-a
+            preuzmi.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        WriteToPdf writeToPdf = new WriteToPdf();
+                        writeToPdf.writeToPdf(radniNalog.get(position), stavkaList, firmaList, covjekList, opisPoslaList);
+                        Toast.makeText(TabActivity.this, "Radni nalog spremljen na uređaj", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(TabActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                }
+            });
+
+        } else {
+            Toast.makeText(this, "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
+        }
+
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         myToolbar.setTitle("");
@@ -87,21 +113,6 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             }
         });
 
-//        skidanje pdf-a
-        preuzmi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    WriteToPdf writeToPdf = new WriteToPdf();
-                    writeToPdf.writeToPdf(radniNalog.get(position), stavkaList, firmaList, covjekList, opisPoslaList);
-                    Toast.makeText(TabActivity.this, "Radni nalog spremljen na uređaj", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(TabActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                }
-
-            }
-        });
 
     }
 
