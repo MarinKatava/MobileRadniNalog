@@ -18,11 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".nalog.zahtjev.ZahtjevActivity"
@@ -39,8 +34,15 @@
         <activity android:name=".database.Test" />
         <activity android:name=".nalog.EditStavka" />
         <activity
-            android:name=".nalog.zahtjev.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:name=".database.LoginActivity"
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

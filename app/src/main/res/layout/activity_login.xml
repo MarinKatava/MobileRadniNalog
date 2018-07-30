@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
-    tools:context=".nalog.zahtjev.LoginActivity">
+    tools:context=".database.LoginActivity">
 
     <!-- Login progress -->
     <ProgressBar
@@ -30,7 +30,38 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="100dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="cursive"
+                    android:gravity="right|center"
+                    android:text="Comp-"
+                    android:textColor="#cc0810a7"
+                    android:textSize="50dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.3"
+                    android:fontFamily="cursive"
+                    android:gravity="left|center"
+                    android:text="IT"
+                    android:textColor="#ec7309"
+                    android:textSize="50dp" />
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -70,12 +101,12 @@
                 style="?android:textAppearanceSmall"
                 android:layout_width="120dp"
                 android:layout_height="75dp"
-                android:layout_marginTop="16dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/login_input"
                 android:text="Prijavite se"
                 android:textAllCaps="false"
-                android:textStyle="bold"
-                android:background="@drawable/login_input"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

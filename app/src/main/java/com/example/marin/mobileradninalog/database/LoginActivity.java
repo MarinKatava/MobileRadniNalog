@@ -1,4 +1,4 @@
-package com.example.marin.mobileradninalog.nalog.zahtjev;
+package com.example.marin.mobileradninalog.database;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
