@@ -85,9 +85,6 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
         month = mCurrentDate.get(Calendar.MONTH);
         year = mCurrentDate.get(Calendar.YEAR);
 
-        ////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////
 
         rn = getArguments().getParcelableArrayList("radniNalog");
         position = getArguments().getInt("position");
@@ -227,7 +224,6 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                         setStatusSistemaId = 1;
                     }
 
-
                     RadniNalog radniNalog = new RadniNalog(rn.get(position).getRadniNalogId(), brojNaloga.getText().toString(),
                             rn.get(position).getCovjekId(), rn.get(position).getFirmaId(), rn.get(position).getDatumZahtjeva(),
                             rn.get(position).getOpisProblema(), dateInput.getText().toString(),
@@ -253,9 +249,6 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
 
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-
-////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////
         return view;
     }
 

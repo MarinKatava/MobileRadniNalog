@@ -36,7 +36,11 @@
             android:name=".database.SearchRadniNalog"
             android:enabled="true" />
 
-        <activity android:name=".database.Test"></activity>
-        <activity android:name=".nalog.EditStavka"></activity>
+        <activity android:name=".database.Test" />
+        <activity android:name=".nalog.EditStavka" />
+        <activity
+            android:name=".nalog.zahtjev.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
     </application>
+
 </manifest>

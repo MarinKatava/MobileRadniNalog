@@ -134,7 +134,6 @@ public class ZahtjevActivity extends AppCompatActivity implements SearchResultRe
             @Override
             public void onClick(View v) {
                 try {
-
                     if (hitna.isChecked() && normalna.isChecked()) {
                         Toast.makeText(ZahtjevActivity.this, "Odznačite jednu vrstu intervencije", Toast.LENGTH_SHORT).show();
                     } else if (hitna.isChecked()) {
@@ -142,37 +141,38 @@ public class ZahtjevActivity extends AppCompatActivity implements SearchResultRe
                     } else if (normalna.isChecked()) {
                         isHitno = false;
                     } else {
-                        Toast.makeText(ZahtjevActivity.this, "Označite vrstu intervencije! ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ZahtjevActivity.this, "Popunite sva polja", Toast.LENGTH_SHORT).show();
                     }
 
+                    if (date.getText().toString().equals("")) {
+                        Toast.makeText(ZahtjevActivity.this, "Popunite sva polja", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (unesiteOpis.getText().toString().isEmpty()) {
+                            Toast.makeText(ZahtjevActivity.this, "Unesite opis problema", Toast.LENGTH_SHORT).show();
+                        } else {
+                            RadniNalog radniNalog = new RadniNalog("0",
+                                    covjekLista.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getCovjekId(),
+                                    firmaLista.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getFirmaId(),
+                                    date.getText().toString(),
+                                    unesiteOpis.getText().toString(), null,
+                                    "0", "0", 1,
+                                    1, null, null, isHitno);
 
-                    RadniNalog radniNalog = new RadniNalog("0",
-                            covjekLista.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getCovjekId(),
-                            firmaLista.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getFirmaId(),
-                            date.getText().toString(),
-                            unesiteOpis.getText().toString(),null ,
-                            "0", "0", 1,
-                            1, null, null, isHitno);
+                            Intent intent = new Intent(Intent.ACTION_SYNC, null, getApplicationContext(), SearchRadniNalog.class);
+                            SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+                            mReceiver.setReceiver(ZahtjevActivity.this);
+                            intent.putExtra("receiver", mReceiver);
+                            intent.putExtra("category", "postZahtjev");
+                            intent.putExtra("radniNalog", radniNalog);
+                            intent.putExtra("urlPostRadniNalog", URL.postRadniNalog);
+                            getApplicationContext().startService(intent);
 
-//                    RadniNalog radniNalog = new RadniNalog(unosCovjek, unos, date.getText().toString(), unesiteOpis.getText().toString(), isHitno);
-
-                    Intent intent = new Intent(Intent.ACTION_SYNC, null, getApplicationContext(), SearchRadniNalog.class);
-                    SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-                    mReceiver.setReceiver(ZahtjevActivity.this);
-                    intent.putExtra("receiver", mReceiver);
-                    intent.putExtra("category", "postZahtjev");
-                    intent.putExtra("radniNalog", radniNalog);
-                    intent.putExtra("urlPostRadniNalog", URL.postRadniNalog);
-                    getApplicationContext().startService(intent);
-
-                    Toast.makeText(getApplicationContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
-
-
+                            Toast.makeText(getApplicationContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 

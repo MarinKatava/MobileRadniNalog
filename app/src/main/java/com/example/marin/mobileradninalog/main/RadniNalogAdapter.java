@@ -84,7 +84,6 @@ public class RadniNalogAdapter extends ArrayAdapter implements SearchResultRecei
         h.send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 File filelocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "RadniNalog" + radniNalog.get(position).getBrojNaloga() + ".pdf");
                 Uri path = Uri.fromFile(filelocation);
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -95,40 +94,10 @@ public class RadniNalogAdapter extends ArrayAdapter implements SearchResultRecei
                 } else {
                     Toast.makeText(context, "File ne postoji. Prvo preuzmite radni nalog na uređaj, zatim ponovno izvršite slanje.", Toast.LENGTH_SHORT).show();
                 }
-
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Radni nalog");
                 context.startActivity(Intent.createChooser(emailIntent, "Pošaljite radni nalog broj " + radniNalog.get(position).getBrojNaloga()));
             }
         });
-
-
-        convertView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                builder.setMessage("Obrisati stavku?").setPositiveButton("Da", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
-                        SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-                        mReceiver.setReceiver(RadniNalogAdapter.this);
-                        intent.putExtra("receiver", mReceiver);
-                        intent.putExtra("category", "deleteRadniNalog");
-                        intent.putExtra("radniNalog", radniNalog);
-                        intent.putExtra("urlDeleteRadniNalog", URL.deleteRadniNalog + radniNalog.get(position).getRadniNalogId());
-                        getContext().startService(intent);
-                    }
-                }).setNegativeButton("Ne", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                }).show();
-                return true;
-            }
-        });
-
 
         return convertView;
     }
