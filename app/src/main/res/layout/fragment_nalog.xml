@@ -275,7 +275,7 @@
             <EditText
                 android:id="@+id/unosMaterijala"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:background="#79ffffff"
                 android:gravity="left|top"
                 android:hint=" Materijal:"
@@ -294,7 +294,7 @@
             <EditText
                 android:id="@+id/unosPrimjedbe"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:background="#79ffffff"
                 android:gravity="left|top"
                 android:hint=" Primjedbe:"
