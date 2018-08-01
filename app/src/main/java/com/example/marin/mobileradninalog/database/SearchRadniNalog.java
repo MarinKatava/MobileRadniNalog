@@ -135,8 +135,6 @@ public class SearchRadniNalog extends IntentService {
                     break;
             }
 
-            Log.w("TU SAM RODIJAK", "EVO MENE MOJI LJUDI");
-
             receiver.send(STATUS_FINISHED, bundle);
         } catch (IOException | JSONException e) {
             bundle.putString(Intent.EXTRA_TEXT, e.toString());
