@@ -168,6 +168,7 @@ public class ZahtjevActivity extends AppCompatActivity implements SearchResultRe
                             getApplicationContext().startService(intent);
 
                             Toast.makeText(getApplicationContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
+                            ZahtjevActivity.this.finish();
                         }
                     }
                 } catch (Exception e) {

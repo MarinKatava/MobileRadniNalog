@@ -22,6 +22,7 @@ import com.example.marin.mobileradninalog.model.OpisPosla;
 import com.example.marin.mobileradninalog.model.Stavka;
 import com.example.marin.mobileradninalog.nalog.EditStavka;
 import com.example.marin.mobileradninalog.nalog.ItemTextActivity;
+import com.example.marin.mobileradninalog.nalog.tabs.TabActivity;
 
 import java.util.ArrayList;
 
@@ -115,6 +116,9 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                         intent.putExtra("radniNalog", radniNalogStavkaList);
                         intent.putExtra("urlPostRadniNalog", URL.deleteRadniNalogStavka + radniNalogStavkaList.get(position).getRadniNalogStavkaId());
                         getContext().startService(intent);
+                        getContext().stopService(intent);
+
+
                     }
                 }).setNegativeButton("Ne", new DialogInterface.OnClickListener() {
                     @Override

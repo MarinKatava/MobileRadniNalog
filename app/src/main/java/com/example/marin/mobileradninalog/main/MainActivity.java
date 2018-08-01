@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
             intent.putExtra("category", "getRadniNalog");
             startService(intent);
         } else {
-            Toast.makeText(this, "Provjerite svoju internetsku vezu", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
         }
     }
 

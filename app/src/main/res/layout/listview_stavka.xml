@@ -53,7 +53,8 @@
             android:maxLines="100"
             android:scrollbars="vertical"
             android:text=" Tekst: "
-            android:textSize="12dp" />
+            android:textSize="12dp"
+            />
 
     </LinearLayout>
 

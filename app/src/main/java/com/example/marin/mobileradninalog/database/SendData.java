@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -31,14 +32,13 @@ public class SendData {
 
         Gson gson = new Gson();
         String json = gson.toJson(p);
-        StringEntity se = new StringEntity(json);
+        HttpEntity se = new StringEntity(json,"UTF-8");
         httpPost.setEntity(se);
 
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
         HttpResponse httpResponse = httpclient.execute(httpPost);
-
 
     }
 }

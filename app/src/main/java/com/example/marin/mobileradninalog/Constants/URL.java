@@ -11,6 +11,6 @@ public interface URL {
     String saveEditRadniNalogStavka = "http://rnalog.dyndns.biz/RadniNalogStavka/SaveEditRadniNalogStavka/";
     String saveEditRadniNalog = "http://rnalog.dyndns.biz/RadniNalog/SaveEditRadniNalog/";
     String deleteRadniNalog = "http://rnalog.dyndns.biz/RadniNalog/Delete/";
-    String deleteRadniNalogStavka = "http://rnalog.dyndns.biz/RadniNalogStavka/Delete/";
+    String deleteRadniNalogStavka = "http://rnalog.dyndns.biz/RadniNalogStavka/Deleteradninalogstavka/";
     String postRadniNalogStavka = "http://rnalog.dyndns.biz/RadniNalogStavka/SaveRadniNalogStavka";
 }
