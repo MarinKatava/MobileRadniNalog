@@ -143,5 +143,10 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
+    
+    @Override
+    public void onBackPressed() {
+
+    }
 
 }

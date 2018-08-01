@@ -87,7 +87,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:text=" Vrijeme rada:"
-                android:textAlignment="viewStart"
                 android:textColor="#656565"
                 android:textSize="17sp"
                 android:textStyle="italic" />
