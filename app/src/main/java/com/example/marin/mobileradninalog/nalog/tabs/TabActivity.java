@@ -77,6 +77,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             intent.putExtra("urlGetOpisPosla", URL.getOpisPosla);
 //       url za dohvacanje stavki samo za taj radniNalogId
             intent.putExtra("urlGetStavka", URL.getStavka + String.valueOf(radniNalog.get(position).getRadniNalogId()));
+            intent.putExtra("urlRadniNalog", URL.getRadniNalog);
             intent.putExtra("category", "getData");
             startService(intent);
 
@@ -130,6 +131,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                 firmaList = (ArrayList<Firma>) resultData.getSerializable("firme");
                 stavkaList = (ArrayList<Stavka>) resultData.getSerializable("stavke");
                 opisPoslaList = (ArrayList<OpisPosla>) resultData.getSerializable("opisPosla");
+                radniNalog = (ArrayList<RadniNalog>)resultData.getSerializable("radninalozi");
 
                 pageAdapter = new PageAdapter(getSupportFragmentManager(), tabs.getTabCount(), radniNalog, covjekList, firmaList, stavkaList, opisPoslaList, position);
                 pageAdapter.notifyDataSetChanged();

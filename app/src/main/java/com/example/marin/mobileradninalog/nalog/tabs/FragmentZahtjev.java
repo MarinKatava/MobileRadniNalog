@@ -163,51 +163,80 @@ public class FragmentZahtjev extends Fragment implements SearchResultReceiver.Re
         spremiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//        provjera koji je checkbox oznacen
-                if (hitna.isChecked()) {
-                    isHitno = true;
+                if (unesiteOpis.getText().toString() == "") {
+                    Toast.makeText(getContext(), "Unesite opis problema", Toast.LENGTH_SHORT).show();
                 } else {
-                    isHitno = false;
-                }
+//        provjera koji je checkbox oznacen
+                    if (hitna.isChecked()) {
+                        isHitno = true;
+                    } else {
+                        isHitno = false;
+                    }
 
-                RadniNalog radniNalog = new RadniNalog(rn.get(radniNalogPosition).getRadniNalogId(),
-                        rn.get(radniNalogPosition).getBrojNaloga(),
-                        covjekList.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getCovjekId(),
-                        firmaList.get(spinnerPoslovniPartner.getSelectedItemPosition()).getFirmaId(),
-                        date.getText().toString(),
-                        unesiteOpis.getText().toString(),
-                        getData.jsonDateFormat(rn.get(radniNalogPosition).getDatumObrade()),
-                        rn.get(radniNalogPosition).getVrijemePocetka(),
-                        rn.get(radniNalogPosition).getVrijemeKraja(),
-                        rn.get(radniNalogPosition).getPoOsnovuId(),
-                        rn.get(radniNalogPosition).getStatusSistemaId(),
-                        rn.get(radniNalogPosition).getUgradjeniMAterijal(),
-                        rn.get(radniNalogPosition).getPrimjedbe(),
-                        isHitno);
+                    if ((hitna.isChecked() != true && normalna.isChecked() != true) || (hitna.isChecked() == true && normalna.isChecked()==true)) {
+                        Toast.makeText(getContext(), "Označite jednu vrstu intervencije", Toast.LENGTH_SHORT).show();
+                    } else {
+                        RadniNalog radniNalog = new RadniNalog(rn.get(radniNalogPosition).getRadniNalogId(),
+                                rn.get(radniNalogPosition).getBrojNaloga(),
+                                covjekList.get(spinnerOdgovornaOsoba.getSelectedItemPosition()).getCovjekId(),
+                                firmaList.get(spinnerPoslovniPartner.getSelectedItemPosition()).getFirmaId(),
+                                date.getText().toString(),
+                                unesiteOpis.getText().toString(),
+                                getData.jsonDateFormat(rn.get(radniNalogPosition).getDatumObrade()),
+                                rn.get(radniNalogPosition).getVrijemePocetka(),
+                                rn.get(radniNalogPosition).getVrijemeKraja(),
+                                rn.get(radniNalogPosition).getPoOsnovuId(),
+                                rn.get(radniNalogPosition).getStatusSistemaId(),
+                                rn.get(radniNalogPosition).getUgradjeniMAterijal(),
+                                rn.get(radniNalogPosition).getPrimjedbe(),
+                                isHitno);
 
-                CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
-                if (checkInternetConnection.checkConnection(getContext())) {
-                    intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
-                    SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
-                    mReceiver.setReceiver(FragmentZahtjev.this);
-                    intent.putExtra("receiver", mReceiver);
-                    intent.putExtra("category", "postZahtjev");
-                    intent.putExtra("radniNalog", radniNalog);
-                    intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(radniNalogPosition).getRadniNalogId());
+                        CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
+                        if (checkInternetConnection.checkConnection(getContext())) {
+                            intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
+                            SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
+                            mReceiver.setReceiver(FragmentZahtjev.this);
+                            intent.putExtra("receiver", mReceiver);
+                            intent.putExtra("category", "postZahtjev");
+                            intent.putExtra("radniNalog", radniNalog);
+                            intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(radniNalogPosition).getRadniNalogId());
 //                    intent.putExtra("urlUpdateRadniNalog", URL.saveEditRadniNalog + rn.get(position).getRadniNalogId());
-                    getContext().startService(intent);
-                    Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(getContext(), "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
-                }
+                            getContext().startService(intent);
+                            Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
 
+                            new Handler().post(new Runnable() {
+
+                                @Override
+                                public void run()
+                                {
+                                    Intent intent = getActivity().getIntent();
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
+                                            | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                    getActivity().overridePendingTransition(0, 0);
+                                    getActivity().finish();
+
+                                    getActivity().overridePendingTransition(0, 0);
+                                    startActivity(intent);
+                                }
+                            });
+
+
+                        } else {
+                            Toast.makeText(getContext(), "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                }
             }
         });
 
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     //    postavljanje prethodno unesenih vrijednosti spinnera u textview
     public void getCovjekFirma() {

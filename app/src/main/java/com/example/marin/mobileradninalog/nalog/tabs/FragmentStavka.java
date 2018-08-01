@@ -103,7 +103,6 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
                 intent.putExtra("urlSaveRadniNalogStavka", URL.postRadniNalogStavka);
                 getContext().startService(intent);
                 radniNalogStavkaAdapter.notifyDataSetChanged();
-                Toast.makeText(getContext(), "Nova stavka dodana.", Toast.LENGTH_SHORT).show();
 
 
 //                refresh liste stavki nakon dodavanja nove stavke

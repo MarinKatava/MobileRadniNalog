@@ -95,11 +95,13 @@ public class SearchRadniNalog extends IntentService {
                     ArrayList<Firma> firma = getData.getFirma(urlFirma);
                     ArrayList<Stavka> stavka = getData.getStavka(urlGetStavka);
                     ArrayList<OpisPosla> opisPosla = getData.getOpisPoslaList(urlGetOpisPosla);
+                    ArrayList<RadniNalog> radniNalogArrayList = getData.getRadniNalogList(urlRadniNalog);
 
                     bundle.putSerializable("firme", firma);
                     bundle.putSerializable("zaposlenici", covjek);
                     bundle.putSerializable("stavke", stavka);
                     bundle.putSerializable("opisPosla", opisPosla);
+                    bundle.putSerializable("radninalozi", radniNalogArrayList);
                     bundle.putSerializable("category", "getData");
                     break;
 

@@ -105,7 +105,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), AlertDialog.THEME_DEVICE_DEFAULT_DARK);
-                builder.setMessage("Obrisati stavku?").setPositiveButton("Da", new DialogInterface.OnClickListener() {
+                builder.setTitle("Obrisati stavku?").setMessage("Promjene vidljive pri sljedećem otvaranju naloga.").setPositiveButton("Da", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), SearchRadniNalog.class);
@@ -117,7 +117,6 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                         intent.putExtra("urlPostRadniNalog", URL.deleteRadniNalogStavka + radniNalogStavkaList.get(position).getRadniNalogStavkaId());
                         getContext().startService(intent);
                         getContext().stopService(intent);
-
 
                     }
                 }).setNegativeButton("Ne", new DialogInterface.OnClickListener() {
