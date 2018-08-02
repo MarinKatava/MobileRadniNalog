@@ -19,7 +19,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.Covjek;
 import com.example.marin.mobileradninalog.model.Firma;
@@ -78,7 +78,7 @@ public class NoviZahtjevActivity extends AppCompatActivity implements SearchResu
         hours = mCurrentTime.get(Calendar.HOUR_OF_DAY);
         minutes = mCurrentTime.get(Calendar.MINUTE);
 
-        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, IntentService.class);
+        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, Service.class);
         SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
         mReceiver.setReceiver(this);
         intent.putExtra("receiver", mReceiver);
@@ -159,7 +159,7 @@ public class NoviZahtjevActivity extends AppCompatActivity implements SearchResu
                                     "0", "0", 1,
                                     1, null, null, isHitno);
 
-                            Intent intent = new Intent(Intent.ACTION_SYNC, null, getApplicationContext(), IntentService.class);
+                            Intent intent = new Intent(Intent.ACTION_SYNC, null, getApplicationContext(), Service.class);
                             SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                             mReceiver.setReceiver(NoviZahtjevActivity.this);
                             intent.putExtra("receiver", mReceiver);
@@ -186,10 +186,10 @@ public class NoviZahtjevActivity extends AppCompatActivity implements SearchResu
     public void onReceiveResult(int resultCode, Bundle resultData) {
         if (resultData.getSerializable("category") == "getCovjekFirma") {
             switch (resultCode) {
-                case IntentService.STATUS_RUNNING:
+                case Service.STATUS_RUNNING:
                     showProgressDialog();
                     break;
-                case IntentService.STATUS_FINISHED:
+                case Service.STATUS_FINISHED:
                     hideProgressDialog();
 
                     covjekLista = (ArrayList<Covjek>) resultData.getSerializable("zaposlenici");
@@ -206,7 +206,7 @@ public class NoviZahtjevActivity extends AppCompatActivity implements SearchResu
                     spinnerPoslovniPartner.setAdapter(firmaListAdapter);
 
                     break;
-                case IntentService.STATUS_ERROR:
+                case Service.STATUS_ERROR:
                     android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                     break;
             }

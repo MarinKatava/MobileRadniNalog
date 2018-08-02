@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.OpisPosla;
 import com.example.marin.mobileradninalog.model.Stavka;
@@ -107,7 +107,7 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
                 builder.setTitle("Obrisati stavku?").setMessage("Promjene vidljive pri sljedećem otvaranju naloga.").setPositiveButton("Da", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), IntentService.class);
+                        Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), Service.class);
                         SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                         mReceiver.setReceiver(RadniNalogStavkaAdapter.this);
                         intent.putExtra("receiver", mReceiver);

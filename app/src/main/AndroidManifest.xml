@@ -30,7 +30,7 @@
             android:windowSoftInputMode="stateHidden" />
 
         <service
-            android:name=".network.IntentService"
+            android:name=".network.Service"
             android:enabled="true" />
 
         <activity android:name=".tabs.stavka.EditStavka" />

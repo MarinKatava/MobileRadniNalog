@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
 import com.example.marin.mobileradninalog.network.CheckInternetConnection;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.Covjek;
 import com.example.marin.mobileradninalog.model.Firma;
@@ -67,7 +67,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
 
         if (checkInternetConnection.checkConnection(getApplicationContext())) {
 
-            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, IntentService.class);
+            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, Service.class);
             SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
             mReceiver.setReceiver(this);
             intent.putExtra("receiver", mReceiver);
@@ -119,11 +119,11 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         switch (resultCode) {
-            case IntentService.STATUS_RUNNING:
+            case Service.STATUS_RUNNING:
                 showProgressDialog();
                 break;
 
-            case IntentService.STATUS_FINISHED:
+            case Service.STATUS_FINISHED:
                 hideProgressDialog();
 
                 covjekList = (ArrayList<Covjek>) resultData.getSerializable("zaposlenici");
@@ -139,7 +139,7 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                 viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
                 break;
 
-            case IntentService.STATUS_ERROR:
+            case Service.STATUS_ERROR:
                 android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                 break;
         }

@@ -15,7 +15,7 @@ import android.widget.Spinner;
 
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.OpisPosla;
 import com.example.marin.mobileradninalog.model.RadniNalog;
@@ -90,7 +90,7 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
 //                uzimanje indexa oznacenog itema u spinneru i ID-ja iz opisPoslaList na tom indexu
                 stavka = new Stavka(radniNalogId, opisPoslaList.get(nazivPoslaSpinner.getSelectedItemPosition()).getOpisPoslaId(), insertText.getText().toString());
 //                upisivanje nove stavke u bazu
-                Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), IntentService.class);
+                Intent intent = new Intent(Intent.ACTION_SYNC, null, getContext(), Service.class);
                 SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                 mReceiver.setReceiver(FragmentStavka.this);
                 intent.putExtra("receiver", mReceiver);

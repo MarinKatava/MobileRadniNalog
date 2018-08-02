@@ -20,7 +20,7 @@ import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
 import com.example.marin.mobileradninalog.network.CheckInternetConnection;
 import com.example.marin.mobileradninalog.network.GetData;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.Covjek;
 import com.example.marin.mobileradninalog.model.Firma;
@@ -189,7 +189,7 @@ public class FragmentZahtjev extends Fragment implements SearchResultReceiver.Re
 
                         CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
                         if (checkInternetConnection.checkConnection(getContext())) {
-                            intent = new Intent(Intent.ACTION_SYNC, null, getContext(), IntentService.class);
+                            intent = new Intent(Intent.ACTION_SYNC, null, getContext(), Service.class);
                             SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                             mReceiver.setReceiver(FragmentZahtjev.this);
                             intent.putExtra("receiver", mReceiver);
@@ -258,13 +258,13 @@ public class FragmentZahtjev extends Fragment implements SearchResultReceiver.Re
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         switch (resultCode) {
-            case IntentService.STATUS_RUNNING:
+            case Service.STATUS_RUNNING:
                 getActivity().stopService(intent);
                 Toast.makeText(getContext(), "Spremljeno", Toast.LENGTH_SHORT).show();
                 break;
-            case IntentService.STATUS_FINISHED:
+            case Service.STATUS_FINISHED:
                 break;
-            case IntentService.STATUS_ERROR:
+            case Service.STATUS_ERROR:
                 android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                 break;
         }

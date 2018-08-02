@@ -19,16 +19,16 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class IntentService extends android.app.IntentService {
+public class Service extends IntentService {
     public static final int STATUS_RUNNING = 0;
     public static final int STATUS_FINISHED = 1;
     public static final int STATUS_ERROR = 2;
 
-    public IntentService() {
+    public Service() {
         super(null);
     }
 
-    public IntentService(String name) {
+    public Service(String name) {
         super(name);
     }
 
@@ -104,11 +104,6 @@ public class IntentService extends android.app.IntentService {
                     bundle.putSerializable("firme", firma1);
                     bundle.putSerializable("zaposlenici", covjek1);
                     bundle.putSerializable("category", "getCovjekFirma");
-                    break;
-
-                case "updateRadniNalog":
-                    UpdateData updateData = new UpdateData();
-                    updateData.updateColumn(urlUpdateRadniNalog, radniNalog);
                     break;
 
                 case "deleteRadniNalogStavka":

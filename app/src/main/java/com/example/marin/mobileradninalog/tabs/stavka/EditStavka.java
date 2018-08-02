@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.Service;
 import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.OpisPosla;
 import com.example.marin.mobileradninalog.model.Stavka;
@@ -100,7 +100,7 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
             public void onClick(View view) {
                 Stavka stavka = new Stavka(radniNalogStavkaList.get(position).getRadniNalogStavkaId(), radniNalogId, opisPoslaIdToSend, opisPoslaTekst.getText().toString());
 
-                intent = new Intent(Intent.ACTION_SYNC, null, EditStavka.this, IntentService.class);
+                intent = new Intent(Intent.ACTION_SYNC, null, EditStavka.this, Service.class);
                 SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
                 mReceiver.setReceiver(EditStavka.this);
                 intent.putExtra("receiver", mReceiver);
@@ -118,12 +118,12 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         switch (resultCode) {
-            case IntentService.STATUS_RUNNING:
+            case Service.STATUS_RUNNING:
                 getApplication().stopService(intent);
                 break;
-            case IntentService.STATUS_FINISHED:
+            case Service.STATUS_FINISHED:
                 break;
-            case IntentService.STATUS_ERROR:
+            case Service.STATUS_ERROR:
                 android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                 break;
         }
