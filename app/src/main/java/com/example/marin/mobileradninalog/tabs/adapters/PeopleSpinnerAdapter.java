@@ -18,14 +18,10 @@ public class PeopleSpinnerAdapter extends ArrayAdapter<Covjek> {
 
     ArrayList<Covjek> covjekList;
     private final LayoutInflater mInflater;
-    private final Context mContext;
     private final int mResource;
-//    int position;
 
     public PeopleSpinnerAdapter(@NonNull Context context, int resource, ArrayList<Covjek> covjekList) {
         super(context, resource, 0, covjekList);
-
-        mContext = context;
         mInflater = LayoutInflater.from(context);
         mResource = resource;
         this.covjekList = covjekList;

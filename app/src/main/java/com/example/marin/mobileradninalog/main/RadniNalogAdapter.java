@@ -36,7 +36,6 @@ public class RadniNalogAdapter extends ArrayAdapter implements SearchResultRecei
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-
     }
 
     public class Holder {
@@ -47,7 +46,6 @@ public class RadniNalogAdapter extends ArrayAdapter implements SearchResultRecei
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         Holder h = new Holder();
-//        View rowView;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(R.layout.list_item, null);
 

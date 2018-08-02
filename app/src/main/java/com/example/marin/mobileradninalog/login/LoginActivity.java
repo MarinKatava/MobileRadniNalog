@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
         final EditText password = findViewById(R.id.password);
         Button prijava = findViewById(R.id.email_sign_in_button);
 
-
         prijava.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

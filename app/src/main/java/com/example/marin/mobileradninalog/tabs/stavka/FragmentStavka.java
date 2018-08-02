@@ -117,11 +117,8 @@ public class FragmentStavka extends Fragment implements SearchResultReceiver.Rec
                         startActivity(intent);
                     }
                 });
-
             }
         });
-
-
         return view;
     }
 

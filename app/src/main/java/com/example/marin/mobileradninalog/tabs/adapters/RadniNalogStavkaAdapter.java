@@ -28,13 +28,9 @@ import java.util.ArrayList;
 public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResultReceiver.Receiver {
     private ArrayList<Stavka> radniNalogStavkaList;
     private ArrayList<OpisPosla> opisPoslaList;
-    private String nazivPosla;
     private int radniNalogId;
     private Context context;
-    private Resources res;
     int indexOfObject;
-    int opisPoslaId;
-
 
     public RadniNalogStavkaAdapter(Context context, int resource, ArrayList<Stavka> radniNalogStavkaList, ArrayList<OpisPosla> opisPoslaList, int radniNalogId, Resources res) {
         super(context, resource, radniNalogStavkaList);
@@ -42,13 +38,11 @@ public class RadniNalogStavkaAdapter extends ArrayAdapter implements SearchResul
         this.opisPoslaList = opisPoslaList;
         this.radniNalogId = radniNalogId;
         this.context = context;
-        this.res = res;
     }
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
         notifyDataSetChanged();
-
     }
 
     public class Holder {

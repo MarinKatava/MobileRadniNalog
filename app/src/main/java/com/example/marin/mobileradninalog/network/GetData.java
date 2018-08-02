@@ -26,15 +26,12 @@ public class GetData {
 
     public ArrayList<RadniNalog> getRadniNalogList(String url) throws IOException, JSONException {
         results = connectAndReceiveData.connectAndReceiveData(url).getJSONArray("rn");
+
         for (int i = 0; i < results.length(); i++) {
             String datumZahtjeva = results.getJSONObject(i).get("datumZahtjeva").toString();
             String datumObrade = results.getJSONObject(i).get("datumObrade").toString();
             JSONObject vrijemePocetka = results.getJSONObject(i).getJSONObject("vrijemePocetka");
             JSONObject vrijemeKraja = results.getJSONObject(i).getJSONObject("vrijemeKraja");
-
-//            if(results.getJSONObject(i).getString("brojNaloga")==""){
-//
-//            }
 
             radniNalogList.add(new RadniNalog(results.getJSONObject(i).getInt("radniNalogId"), results.getJSONObject(i).getString("brojNaloga"),
                     results.getJSONObject(i).getInt("covjekId"), results.getJSONObject(i).getInt("firmaId"),

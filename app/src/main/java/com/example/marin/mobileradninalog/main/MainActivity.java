@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -146,5 +145,4 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
     public void onBackPressed() {
 
     }
-
 }

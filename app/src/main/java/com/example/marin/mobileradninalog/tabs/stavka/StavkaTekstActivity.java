@@ -29,5 +29,4 @@ public class StavkaTekstActivity extends AppCompatActivity {
             }
         });
     }
-
 }

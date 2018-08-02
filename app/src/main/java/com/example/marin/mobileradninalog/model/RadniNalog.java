@@ -23,6 +23,7 @@ public class RadniNalog implements Parcelable {
     public RadniNalog(int radniNalogId, String brojNaloga, int covjekId, int firmaId, String datumZahtjeva,
                       String opisProblema, String datumObrade, String vrijemePocetka, String vrijemeKraja,
                       int poOsnovuId, int statusSistemaId, String ugradjeniMAterijal, String primjedbe, boolean isHitno) {
+
         this.radniNalogId = radniNalogId;
         this.brojNaloga = brojNaloga;
         this.covjekId = covjekId;
@@ -42,6 +43,7 @@ public class RadniNalog implements Parcelable {
     public RadniNalog(String brojNaloga, int covjekId, int firmaId, String datumZahtjeva,
                       String opisProblema, String datumObrade, String vrijemePocetka, String vrijemeKraja,
                       int poOsnovuId, int statusSistemaId, String ugradjeniMAterijal, String primjedbe, boolean isHitno) {
+
         this.brojNaloga = brojNaloga;
         this.covjekId = covjekId;
         this.firmaId = firmaId;
@@ -122,6 +124,7 @@ public class RadniNalog implements Parcelable {
     public boolean getIsHitno() {return isHitno;}
 
     public RadniNalog(Parcel in) {
+
         radniNalogId = in.readInt();
         brojNaloga = in.readString();
         covjekId = in.readInt();

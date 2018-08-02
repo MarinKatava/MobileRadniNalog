@@ -17,13 +17,10 @@ import java.util.ArrayList;
 public class OpisPoslaSpinnerAdapter extends ArrayAdapter<OpisPosla> {
     ArrayList<OpisPosla> opisPoslaList;
     private final LayoutInflater mInflater;
-    private final Context mContext;
     private final int mResource;
 
     public OpisPoslaSpinnerAdapter(@NonNull Context context, int resource, ArrayList<OpisPosla> opisPoslaList) {
         super(context, resource, 0, opisPoslaList);
-
-        mContext = context;
         mInflater = LayoutInflater.from(context);
         mResource = resource;
         this.opisPoslaList = opisPoslaList;

@@ -56,18 +56,15 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
         dateInput = view.findViewById(R.id.formatDatuma);
         odUnos = view.findViewById(R.id.odUnos);
         doUnos = view.findViewById(R.id.doUnos);
-
         brojNaloga = view.findViewById(R.id.brojNaloga);
         unosMaterijala = view.findViewById(R.id.unosMaterijala);
         unosPrimjedbe = view.findViewById(R.id.unosPrimjedbe);
-
         ugovor = view.findViewById(R.id.ugovor);
         garancija = view.findViewById(R.id.garancija);
         poPozivu = view.findViewById(R.id.poPozivu);
         potpunoOperativan = view.findViewById(R.id.potpunoOperativan);
         potpunoUZastoju = view.findViewById(R.id.potpunoUZastoju);
         djelimicnoOperativan = view.findViewById(R.id.djelimicniZastoj);
-
         save = view.findViewById(R.id.spremiti);
 
         mCurrentDate = Calendar.getInstance();
@@ -100,7 +97,7 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                     ugovor.setChecked(false);
                     garancija.setChecked(false);
             }
-            //postavljanje checkboxa Status sistema" na vec unesene vrijednosti
+//            postavljanje checkboxa "Status sistema" na vec unesene vrijednosti
             switch (rn.get(position).getStatusSistemaId()) {
                 case 1:
                     potpunoUZastoju.setChecked(true);
@@ -233,7 +230,7 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                         intent.putExtra("urlPostRadniNalog", URL.saveEditRadniNalog + rn.get(position).getRadniNalogId());
                         getContext().startService(intent);
 
-
+//                        ponovno pokretanje activityja
                         new Handler().post(new Runnable() {
 
                             @Override
@@ -250,8 +247,6 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                             }
                         });
 
-
-
                     }else{
                         Toast.makeText(getContext(), "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
                     }
@@ -260,7 +255,6 @@ public class FragmentRadniNalog extends Fragment implements SearchResultReceiver
                 }
             }
         });
-
 
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);

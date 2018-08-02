@@ -24,8 +24,8 @@ PageAdapter extends FragmentStatePagerAdapter {
     ArrayList<Firma> firmaList;
     ArrayList<Stavka> stavkaList;
     ArrayList<OpisPosla> opisPoslaList;
-    int itemPosition;
     Bundle bundle;
+    int itemPosition;
 
     public PageAdapter(FragmentManager fm, int numOfTabs, ArrayList<RadniNalog> radniNalog,
                        ArrayList<Covjek> covjekList, ArrayList<Firma> firmaList,

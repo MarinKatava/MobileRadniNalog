@@ -15,21 +15,15 @@ import com.example.marin.mobileradninalog.model.Firma;
 import java.util.ArrayList;
 
 public class FirmaSpinnerAdapter extends ArrayAdapter<Firma> {
-
     ArrayList<Firma> firmaList;
     private final LayoutInflater mInflater;
-    private final Context mContext;
     private final int mResource;
-//    int position;
 
     public FirmaSpinnerAdapter(@NonNull Context context, int resource, ArrayList<Firma> firmaList) {
         super(context, resource, 0, firmaList);
-
-        mContext = context;
         mInflater = LayoutInflater.from(context);
         mResource = resource;
         this.firmaList = firmaList;
-//        this.position = position;
     }
 
     @Override

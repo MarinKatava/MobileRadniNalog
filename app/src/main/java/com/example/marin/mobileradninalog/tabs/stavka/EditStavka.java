@@ -94,7 +94,6 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
             }
         });
 
-
         spremiti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +109,6 @@ public class EditStavka extends AppCompatActivity implements SearchResultReceive
                 intent.putExtra("category", "editStavka");
                 startService(intent);
                 finish();
-
             }
         });
     }

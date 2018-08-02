@@ -64,7 +64,6 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
         radniNalog = getIntent().getParcelableArrayListExtra("radniNalogList");
 
         CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
-
         if (checkInternetConnection.checkConnection(getApplicationContext())) {
 
             Intent intent = new Intent(Intent.ACTION_SYNC, null, this, Service.class);
@@ -74,13 +73,12 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
             intent.putExtra("urlFirma", URL.getFirma);
             intent.putExtra("urlCovjek", URL.getCovjek);
             intent.putExtra("urlGetOpisPosla", URL.getOpisPosla);
-//       url za dohvacanje stavki samo za taj radniNalogId
             intent.putExtra("urlGetStavka", URL.getStavka + String.valueOf(radniNalog.get(position).getRadniNalogId()));
             intent.putExtra("urlRadniNalog", URL.getRadniNalog);
             intent.putExtra("category", "getData");
             startService(intent);
 
-            //        skidanje pdf-a
+//            preuzimanje pdf-a
             preuzmi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -92,14 +90,12 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                         e.printStackTrace();
                         Toast.makeText(TabActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
-
                 }
             });
 
         } else {
             Toast.makeText(this, "Provjerite internetsku vezu", Toast.LENGTH_SHORT).show();
         }
-
 
         Toolbar myToolbar = findViewById(R.id.toolbar);
         myToolbar.setTitle("");
@@ -112,8 +108,6 @@ public class TabActivity extends AppCompatActivity implements SearchResultReceiv
                 TabActivity.this.finish();
             }
         });
-
-
     }
 
     @Override

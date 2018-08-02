@@ -22,10 +22,7 @@ public class SendData {
 
         connectAndReceiveData = new ConnectAndReceiveData();
 
-        String result = "";
-        InputStream inputStream = null;
         HttpClient httpclient = new DefaultHttpClient();
-
         HttpPost httpPost = new HttpPost(url);
 
         Gson gson = new Gson();
@@ -36,7 +33,7 @@ public class SendData {
         httpPost.setHeader("Accept", "application/json");
         httpPost.setHeader("Content-type", "application/json");
 
-        HttpResponse httpResponse = httpclient.execute(httpPost);
+        httpclient.execute(httpPost);
 
     }
 }

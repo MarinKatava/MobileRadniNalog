@@ -18,8 +18,7 @@ public class DeleteData {
         connectAndReceiveData = new ConnectAndReceiveData();
 
         HttpClient httpclient = new DefaultHttpClient();
-
         HttpPost httpPost = new HttpPost(url);
-        HttpResponse httpResponse = httpclient.execute(httpPost);
+        httpclient.execute(httpPost);
     }
 }

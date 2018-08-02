@@ -31,10 +31,7 @@ import static com.itextpdf.text.pdf.PdfContentByte.ALIGN_CENTER;
  */
 
 public class WriteToPdf {
-    Context context;
-    int position;
     RadniNalog radniNalog;
-    ArrayList<RadniNalog> radniNalogList;
     ArrayList<Stavka> stavkaList;
     ArrayList<Firma> firmaList;
     ArrayList<Covjek> covjekList;
@@ -45,13 +42,12 @@ public class WriteToPdf {
 
     GetData getData = new GetData();
 
-    public Boolean writeToPdf(RadniNalog radniNalog, ArrayList<Stavka> stavkaList, ArrayList<Firma> firmaList, ArrayList<Covjek> covjekList, ArrayList<OpisPosla> opisPoslaList) throws ParseException {
+    public Boolean writeToPdf(RadniNalog radniNalog, ArrayList<Stavka> stavkaList, ArrayList<Firma> firmaList, ArrayList<Covjek> covjekList, ArrayList<OpisPosla> opisPoslaList) {
         this.radniNalog = radniNalog;
         this.stavkaList = stavkaList;
         this.firmaList = firmaList;
         this.covjekList = covjekList;
         this.opisPoslaList = opisPoslaList;
-
 
 //        dohvacanje naziva zaposlenika iz ID-ja
         for (int i = 0; i < covjekList.size(); i++) {
@@ -65,7 +61,6 @@ public class WriteToPdf {
                 nazivFirme = firmaList.get(i).getNaziv();
             }
         }
-
         try {
 //            kreiranje lokacije spremanja filea
             String fpath = "/sdcard/" + "RadniNalog" + String.valueOf(radniNalog.getBrojNaloga()) + ".pdf";
@@ -88,6 +83,7 @@ public class WriteToPdf {
 //            otvaranje dokumenta
             document.open();
 
+//            dodavanje naslova Radni nalog
             Paragraph para = new Paragraph("Radni nalog", title);
             para.setAlignment(ALIGN_CENTER);
             para.setLeading(0, 1);
@@ -102,7 +98,6 @@ public class WriteToPdf {
 
 
 //            upisivanje u dokument
-//            document.add(new Paragraph( Element.ALIGN_MIDDLE,"Radni nalog" + "\n", title));
             document.add(new Paragraph(" "));
 //            broj naloga
             document.add(new Paragraph("Broj naloga: ", items));
@@ -177,6 +172,7 @@ public class WriteToPdf {
                 document.add(new Paragraph("Normalna", textFont));
             }
 
+//            naslov Stavke
             document.add(new Paragraph(" "));
             Paragraph para1 = new Paragraph("Stavke", title);
             para1.setAlignment(ALIGN_CENTER);
@@ -208,7 +204,6 @@ public class WriteToPdf {
 //            potpis
             document.add(new Paragraph("____________________                                                            ____________________ "));
             document.add(new Paragraph("      Potpis izvrsitelja                                                                                           Pecat firme", textFont));
-
 
 //            zatvaranje dokumenta
             document.close();

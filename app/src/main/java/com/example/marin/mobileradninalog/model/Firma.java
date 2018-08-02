@@ -32,7 +32,6 @@ public class Firma implements Parcelable {
         this.adresa = adresa;
     }
 
-
     protected Firma(Parcel in) {
         firmaId = in.readInt();
         idBroj = in.readInt();
