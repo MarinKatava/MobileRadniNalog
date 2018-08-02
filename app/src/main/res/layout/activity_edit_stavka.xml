@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".nalog.EditStavka">
+    tools:context=".tabs.stavka.EditStavka">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

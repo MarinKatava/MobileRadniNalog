@@ -15,13 +15,12 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.marin.mobileradninalog.Constants.URL;
+import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.database.CheckInternetConnection;
-import com.example.marin.mobileradninalog.database.SearchRadniNalog;
-import com.example.marin.mobileradninalog.database.SearchResultReceiver;
+import com.example.marin.mobileradninalog.network.CheckInternetConnection;
+import com.example.marin.mobileradninalog.network.IntentService;
+import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.RadniNalog;
-import com.example.marin.mobileradninalog.nalog.zahtjev.ZahtjevActivity;
 
 import java.util.ArrayList;
 
@@ -29,8 +28,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements SearchResultReceiver.Receiver {
     ListView listView;
     ArrayList<RadniNalog> radniNalog;
-    private ProgressDialog mProgressDialog;
     RadniNalogAdapter adapter;
+    private ProgressDialog mProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
                 requestForSpecificPermission();
             }
         }
-
     }
 
 
@@ -58,14 +56,14 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
             novizahtjev.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, ZahtjevActivity.class);
+                    Intent intent = new Intent(MainActivity.this, NoviZahtjevActivity.class);
                     startActivity(intent);
                 }
             });
 
             listView = findViewById(R.id.listView);
 
-            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, SearchRadniNalog.class);
+            Intent intent = new Intent(Intent.ACTION_SYNC, null, this, IntentService.class);
             SearchResultReceiver mReceiver = new SearchResultReceiver(new Handler());
             mReceiver.setReceiver(this);
             intent.putExtra("receiver", mReceiver);
@@ -82,10 +80,10 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
     public void onReceiveResult(int resultCode, Bundle resultData) {
 
         switch (resultCode) {
-            case SearchRadniNalog.STATUS_RUNNING:
+            case IntentService.STATUS_RUNNING:
                 showProgressDialog();
                 break;
-            case SearchRadniNalog.STATUS_FINISHED:
+            case IntentService.STATUS_FINISHED:
                 hideProgressDialog();
                 mProgressDialog.dismiss();
 
@@ -94,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
                 adapter = new RadniNalogAdapter(MainActivity.this, R.layout.radni_nalog, radniNalog, getResources());
                 listView.setAdapter(adapter);
                 break;
-            case SearchRadniNalog.STATUS_ERROR:
+            case IntentService.STATUS_ERROR:
                 android.util.Log.d("ERROR", resultData.getString(Intent.EXTRA_TEXT));
                 break;
         }
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-    
+
     @Override
     public void onBackPressed() {
 

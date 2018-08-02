@@ -2,19 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nalog.tabs.TabActivity">
+    tools:context=".tabs.TabActivity">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background"
-        >
+        android:background="@drawable/background">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,8 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="Promjena poslovnog partnera (opcionalno)"
-                    android:textColor="#656565"
-                    />
+                    android:textColor="#656565" />
 
                 <Spinner
                     android:id="@+id/spinnerPoslovniPartner"
@@ -65,9 +62,9 @@
                     android:id="@+id/odgovornaOsoba"
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
                     android:text=" Odgovorna osoba:"
-                    android:textColor="#656565"
-                    android:layout_marginTop="5dp"/>
+                    android:textColor="#656565" />
 
                 <TextView
                     android:id="@+id/odgovornaOsobaTextView"
@@ -82,13 +79,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:text="Promjena odgovorne osobe (opcionalno)"
-                    android:textColor="#656565"/>
+                    android:textColor="#656565" />
+
                 <Spinner
                     android:id="@+id/spinnerOdgovornaOsoba"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_marginLeft="2dp" />
-
 
 
             </LinearLayout>
@@ -192,8 +189,7 @@
                         android:background="@drawable/buttonmain"
                         android:buttonTint="#656565"
                         android:text="Normalna"
-                        android:textColor="#656565"
-                        />
+                        android:textColor="#656565" />
                 </LinearLayout>
             </LinearLayout>
 

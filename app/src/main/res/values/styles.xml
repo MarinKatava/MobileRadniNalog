@@ -18,7 +18,6 @@
 
     <style name="CustomToolbarStyle" parent="Theme.AppCompat.Light.NoActionBar">
 
-        <item name="android:background">@drawable/mainbckgrnd</item>
     </style>
 
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">

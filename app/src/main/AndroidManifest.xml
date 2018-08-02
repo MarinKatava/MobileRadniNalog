@@ -22,21 +22,20 @@
 
         </activity>
         <activity
-            android:name=".nalog.zahtjev.ZahtjevActivity"
+            android:name=".main.NoviZahtjevActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".nalog.ItemTextActivity" />
+        <activity android:name=".tabs.stavka.StavkaTekstActivity" />
         <activity
-            android:name=".nalog.tabs.TabActivity"
+            android:name=".tabs.TabActivity"
             android:windowSoftInputMode="stateHidden" />
 
         <service
-            android:name=".database.SearchRadniNalog"
+            android:name=".network.IntentService"
             android:enabled="true" />
 
-        <activity android:name=".database.Test" />
-        <activity android:name=".nalog.EditStavka" />
+        <activity android:name=".tabs.stavka.EditStavka" />
         <activity
-            android:name=".database.LoginActivity"
+            android:name=".login.LoginActivity"
             android:windowSoftInputMode="stateHidden"
             >
 

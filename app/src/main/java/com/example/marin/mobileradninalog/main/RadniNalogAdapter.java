@@ -1,14 +1,11 @@
 package com.example.marin.mobileradninalog.main;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +14,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.marin.mobileradninalog.Constants.URL;
 import com.example.marin.mobileradninalog.R;
-import com.example.marin.mobileradninalog.database.SearchRadniNalog;
-import com.example.marin.mobileradninalog.database.SearchResultReceiver;
-import com.example.marin.mobileradninalog.model.Covjek;
-import com.example.marin.mobileradninalog.model.Firma;
+import com.example.marin.mobileradninalog.network.SearchResultReceiver;
 import com.example.marin.mobileradninalog.model.RadniNalog;
-import com.example.marin.mobileradninalog.model.Stavka;
-import com.example.marin.mobileradninalog.nalog.tabs.TabActivity;
+import com.example.marin.mobileradninalog.tabs.TabActivity;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -14,13 +14,13 @@
         android:elevation="4dp"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Novi zahtjev"
-        app:titleTextColor="#f4f3f3"/>
+        app:titleTextColor="#f4f3f3" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        tools:context="com.example.marin.mobileradninalog.nalog.zahtjev.ZahtjevActivity">
+        tools:context="com.example.marin.mobileradninalog.main.NoviZahtjevActivity">
 
 
         <LinearLayout
