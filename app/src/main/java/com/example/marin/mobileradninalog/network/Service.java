@@ -52,7 +52,6 @@ public class Service extends IntentService {
         String urlPostRadniNalog = intent.getExtras().getString("urlPostRadniNalog");
         String urlGetStavka = intent.getExtras().getString("urlGetStavka");
         String urlGetOpisPosla = intent.getExtras().getString("urlGetOpisPosla");
-        String urlUpdateRadniNalog = intent.getExtras().getString("urlUpdateRadniNalog");
         String urlSaveRadniNalogStavka = intent.getExtras().getString("urlSaveRadniNalogStavka");
         String urlDeleteRadniNalogStavka = intent.getExtras().getString("urlDeleteRadniNalogStavka");
         String urlUpdateRadniNalogStavka = intent.getExtras().getString("urlUpdateRadniNalogStavka");
