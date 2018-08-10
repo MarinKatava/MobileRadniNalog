@@ -2,6 +2,7 @@ package com.example.marin.mobileradninalog.main;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.marin.mobileradninalog.constants.CheckForPermission;
 import com.example.marin.mobileradninalog.constants.URL;
 import com.example.marin.mobileradninalog.R;
 import com.example.marin.mobileradninalog.network.CheckInternetConnection;
@@ -25,7 +27,7 @@ import com.example.marin.mobileradninalog.model.RadniNalog;
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements SearchResultReceiver.Receiver {
+public class MainActivity extends AppCompatActivity implements SearchResultReceiver.Receiver, CheckForPermission {
     ListView listView;
     ArrayList<RadniNalog> radniNalog;
     RadniNalogAdapter adapter;
@@ -36,17 +38,18 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        int MyVersion = Build.VERSION.SDK_INT;
-        if (MyVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
-            if (!checkIfAlreadyhavePermission()) {
-                requestForSpecificPermission();
-            }
-        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        int MyVersion = Build.VERSION.SDK_INT;
+        if (MyVersion > Build.VERSION_CODES.LOLLIPOP_MR1) {
+            if (!checkIfAlreadyhavePermission(this)) {
+                requestForSpecificPermission();
+            }
+        }
 
         CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
         if (checkInternetConnection.checkConnection(this)) {
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
-
         switch (resultCode) {
             case Service.STATUS_RUNNING:
                 showProgressDialog();
@@ -112,7 +114,8 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
         }
     }
 
-    private boolean checkIfAlreadyhavePermission() {
+    @Override
+    public boolean checkIfAlreadyhavePermission(Context context) {
         int result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (result == PackageManager.PERMISSION_GRANTED) {
             return true;
@@ -121,7 +124,8 @@ public class MainActivity extends AppCompatActivity implements SearchResultRecei
         }
     }
 
-    private void requestForSpecificPermission() {
+    @Override
+    public void requestForSpecificPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);
     }
